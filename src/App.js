@@ -1,11 +1,14 @@
 import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { Main, Auth } from './pages';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      whaaaat
-    </div>
+    <Routes>
+            <Route path='/' element={<h1>main</h1>} />
+            <Route path='/main' element={<Main />} />
+            <Route path='/auth' element={<Auth />} />
+    </Routes>
   );
 }
 
-export default App;

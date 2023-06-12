@@ -1,5 +1,9 @@
+import { Wrapper } from "../../components";
+
 export const Main = () => {
-    return (
-      <div>kk</div>
-    );
-  }
+  return (
+    <Wrapper>
+      <h2>Main</h2>
+    </Wrapper>
+  );
+}

@@ -5,7 +5,7 @@ import { Main, Auth } from './pages';
 export const App = () => {
   return (
     <Routes>
-            <Route path='/' element={<h1>main</h1>} />
+            <Route path='/' element={<Main />} />
             <Route path='/main' element={<Main />} />
             <Route path='/auth' element={<Auth />} />
     </Routes>

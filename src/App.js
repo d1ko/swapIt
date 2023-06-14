@@ -4,7 +4,6 @@ import { PrivateRoute } from './components';
 
 
 export const App = () => {
-
   const routes = useRoutes([
     {
         path: '/',

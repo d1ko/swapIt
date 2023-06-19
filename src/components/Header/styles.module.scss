@@ -1,10 +1,30 @@
 .header {
 	display: flex;
-	justify-content: center ;
 	align-items: center;
-	height: 100%;
-	color: #fff;
-	.button {
-		color: #fff;
-	}
-}
+	justify-content: space-between;
+	background-color: #ca3333;
+	width: 100vw;
+	height: 100px;
+	margin-left: -50px;
+  }
+  
+  .logo img {
+	height: 100px;
+	margin-top: 20px;
+	
+  }
+  
+  .nav ul {
+	list-style-type: none;
+	display: flex;
+  }
+  
+  .nav ul li {
+	margin-right: 10px;
+  }
+  
+  .button {
+	color: #000000;
+	font-size: x-large;
+	font-weight: bolder;
+  }

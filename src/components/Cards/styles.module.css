@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+.card {
+    width: 240px;
+    left: 30px;
+    gap: 40px;
+}
+.card:hover {
+    cursor: default;
+}
+.cardB{
+    height: 120px;
+}
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+}
+.cardImg{
+    height: 250px;
+}
+.buttonCul{
+    display: flex;
+    gap: 15px;
+}
+
+.cardImgLike{
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+.cardImgLike:hover{
+    cursor: pointer;
+}
+.cardChatIcon{
+    height: 30px;
+    width: 30px;
+}
+.cardChatIcon:hover{
+    cursor: pointer;
+}

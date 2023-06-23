@@ -1,28 +1,27 @@
 .header {
 	display: flex;
-	justify-content: space-between;
+	justify-content:space-between;
 	align-items: center;
-	background: linear-gradient(180deg, #E9F8FF 0%, #FFF 53.14%, #FFF 100%);
+	background: #E9F8FF;
 	width: 100vw;
-	height: 150px;
-	
-	
-  }
-  
-  .logo img {
-	height: 150px;
-	margin-top: 20px;
-	margin-left: -50px;
 
 	
   }
   
+  .logo img {
+	display:flex;
+	height: 75px;
+	margin-left: -50px;
+	margin-top: -20px;
+	
+	
+
+  }
+  
   .nav ul {
-	list-style-type: none;
 	display: flex;
-	justify-content: center;
-	align-items: center;		
-	margin-top: 25px;
+	list-style-type: none;
+	margin-right: 100px;
   }
   
   .nav ul li {
@@ -30,24 +29,10 @@
   }
   
   .button {
-	color: #000000;
+	color: #164ea1;
 	font-size: x-large;
 	font-weight: bolder;
   }
-  .contact {
-	display: flex;
-	margin-left: 5px;
-	margin-right: 100px;
-	gap: 20px;
-	
-
-  }
-  .search {
-	display: flex;
-	width: 200px;
-	gap: 20px;
-  }
-
-  .search button {
-	width: 100px;
-  }
+  ::-webkit-scrollbar {
+	width: 0;
+ }  

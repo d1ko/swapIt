@@ -1,4 +1,4 @@
-import { Main, Auth, Profile, NotFound } from './pages';
+import { Main, Auth, Profile, NotFound, Registration  } from './pages';
 import { useRoutes } from 'react-router-dom';
 import { PrivateRoute } from './components';
 import { Wrapper } from './components';
@@ -18,9 +18,14 @@ export const App = () => {
       element: <PrivateRoute element={<Wrapper><Profile /></Wrapper>} />,
     },
     {
+      path: '/regis',
+      element: <PrivateRoute element={<Registration />} />,
+    },
+    {
       path: '*',
       element: <NotFound />,
     },
+    
   ]);
 
   return routes;

@@ -1,27 +1,12 @@
 import {Form , Input , Button , Row} from 'antd'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
-import { useState } from 'react'
 
-export const Auth = () => {
-    const [values, setValues]  = useState({
-        nickname: '',
-        number: '',
-        email: '',
-        password: '',
-    });
+export const Registration = () => {
     const navigate  = useNavigate();
-
-    const [auth, setAuth] = useState({
-        auth: false,
-    });
-    // const {setAuth} = !auth;
-
     const onSubmit = (values) => {
-        console.log(values.nickname);
-        console.log(values.number);
-        console.log(values.email);
-        console.log(values.password);
+        console.log(values);
         navigate('/main');
     }
 
@@ -29,6 +14,12 @@ export const Auth = () => {
         <div className={styles.wrap}>
             <Form onFinish={onSubmit}>
 
+                <Form.Item label='nickname'  name='nickname' >
+                    <Input required placeholder='write your nickname' />
+                </Form.Item>
+                <Form.Item label='number'  name='number' >
+                    <Input required placeholder='+996 (XXX) XXX - XXX' />
+                </Form.Item>
                 <Form.Item label='email'  name='email' >
                     <Input type='email' required placeholder='write your email address' />
                 </Form.Item>
@@ -39,8 +30,8 @@ export const Auth = () => {
                 <Row justify='center'>
                     <Button htmlType='submit' type='primary'>Add</Button>
                 </Row>
-                <Link to='/regis' >Creat account</Link>
             </Form>
+            
         </div>
     );
-  }
+}

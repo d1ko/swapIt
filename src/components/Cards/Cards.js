@@ -1,54 +1,77 @@
-import { Card } from "antd";
-import { Button } from "antd";
-import heard from '../../images/heart.png'
-import fullheard from '../../images/heart-full.png'
-import chat from '../../images/comment.png'
-import { useState } from "react";
-import styles from "./styles.module.css";
+import React, { useState, useEffect } from 'react';
+import { Card, Button } from 'antd';
+import heard from '../../images/heart.png';
+import fullheard from '../../images/heart-full.png';
+import chat from '../../images/comment.png';
+import styles from './styles.module.css';
+
 
 const { Meta } = Card;
 
-
-
-
-
 export const Cards = () => {
+    const [image, setImage] = useState(heard);
+    const [cards, setCards] = useState([]);
+    const api = 'http://16.171.20.43/api/v1/products'
 
+    useEffect(() => {
+        fetchCards();
+    }, []);
 
-  const [image, setImage] = useState(heard);
-  const handleClick = () => {
-    if (image === heard) {
-      setImage(fullheard);
-    } else {
-      setImage(heard);
-    }
-  };
-
-  return (
-    <div className={styles.cards}>
-      <Card
-        hoverable
-        className={styles.card}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-            className={styles.cardImg}
-          />
+    const fetchCards = async () => {
+        try {
+            const response = await fetch(api);
+            const data = await response.json();
+            setCards(data.results);
+        } catch (error) {
+            console.error('Error', error);
         }
-      >
-        <Meta
-          title="Europe Street beat"
-          description="www.instagram.com"
-          className={styles.cardB}
-        />
-        <div className={styles.buttonCul}>
-          <Button>show more</Button>
-          <img alt="none" src={image} className={styles.cardImgLike} onClick={handleClick}/>
-          <img src={chat} alt="none" className={styles.cardChatIcon}/>
-        </div>
+    };
 
-      </Card>
-    </div>
-  );
+    const handleClick = () => {
+        if (image === heard) {
+            setImage(fullheard);
+        } else {
+            setImage(heard);
+        }
+    };
+
+    return (
+        <div className={styles.cards}>
+            {cards.map((card) => (
+                <Card
+                    key={card.id}
+                    hoverable
+                    className={styles.card}
+                    cover={
+                        <img
+                            alt='example'
+                            src={card.images[0].image}
+                            className={styles.cardImg}
+                        />
+                    }
+                >
+                    <Meta
+                        title={card.name}
+                        description={card.description}
+                        className={styles.cardB}
+                    />
+                    <div className={styles.buttonCul}>
+                        <Button>show more</Button>
+                        <img
+                            alt='none'
+                            src={image}
+                            className={styles.cardImgLike}
+                            onClick={handleClick}
+                        />
+                        <img
+                            src={chat}
+                            alt='none'
+                            className={styles.cardChatIcon}
+                        />
+                    </div>
+                </Card>
+            ))}
+        </div>
+    );
 };
+

@@ -1,8 +1,8 @@
-import React from 'react';
+import {useState} from 'react';
 import styles from './Main.module.css';
 
 export const Main = () => {
-  
+    const [products, setProducts]= useState([])
 
   return (
     <main className={styles.container}>

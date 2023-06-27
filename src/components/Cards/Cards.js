@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Button } from 'antd';
 import heard from '../../images/heart.png';
 import fullheard from '../../images/heart-full.png';
 import chat from '../../images/comment.png';
 import styles from './styles.module.css';
 
-
 const { Meta } = Card;
 
 export const Cards = () => {
     const [image, setImage] = useState(heard);
     const [cards, setCards] = useState([]);
-    const api = 'http://16.171.20.43/api/v1/products'
+
+    const api = 'http://16.171.20.43/api/v1/products';
 
     useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await fetch(api);
+                const data = await response.json();
+                setCards(data.results);
+            } catch (error) {
+                console.error('Error', error);
+            }
+        };
+
         fetchCards();
     }, []);
-
-    const fetchCards = async () => {
-        try {
-            const response = await fetch(api);
-            const data = await response.json();
-            setCards(data.results);
-        } catch (error) {
-            console.error('Error', error);
-        }
-    };
 
     const handleClick = () => {
         if (image === heard) {
@@ -74,4 +74,3 @@ export const Cards = () => {
         </div>
     );
 };
-

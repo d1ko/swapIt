@@ -24,4 +24,3 @@ export const Guide = () => {
   }
   
  
-export default Guide;  

@@ -33,7 +33,7 @@ export const Header = () => {
             <>
               <li>
                 <Button type="link" className={styles.button}>
-                  <Link to="/register">Регистрация</Link>
+                  <Link to="/signup">Регистрация</Link>
                 </Button>
               </li>
               <li>

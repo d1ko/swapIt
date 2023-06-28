@@ -1,38 +1,33 @@
 .header {
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 	align-items: center;
-	background: #E9F8FF;
+	background: #e9f8ff;
 	width: 100vw;
+}
 
-	
-  }
-  
-  .logo img {
-	display:flex;
+.logo img {
+	display: flex;
 	height: 75px;
 	margin-left: -50px;
 	margin-top: -20px;
-	
-	
+}
 
-  }
-  
-  .nav ul {
+.nav ul {
 	display: flex;
 	list-style-type: none;
 	margin-right: 100px;
-  }
-  
-  .nav ul li {
+}
+
+.nav ul li {
 	margin-right: 10px;
-  }
-  
-  .button {
+}
+
+.button {
 	color: #164ea1;
 	font-size: x-large;
 	font-weight: bolder;
-  }
-  ::-webkit-scrollbar {
+}
+::-webkit-scrollbar {
 	width: 0;
- }  
+}

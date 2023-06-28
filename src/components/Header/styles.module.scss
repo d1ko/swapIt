@@ -1,22 +1,27 @@
 .header {
 	display: flex;
+	justify-content:space-between;
 	align-items: center;
-	justify-content: space-between;
-	background-color: #ca3333;
+	background: #E9F8FF;
 	width: 100vw;
-	height: 100px;
-	margin-left: -50px;
-  }
-  
-  .logo img {
-	height: 100px;
-	margin-top: 20px;
+
 	
   }
   
+  .logo img {
+	display:flex;
+	height: 75px;
+	margin-left: -50px;
+	margin-top: -20px;
+	
+	
+
+  }
+  
   .nav ul {
-	list-style-type: none;
 	display: flex;
+	list-style-type: none;
+	margin-right: 100px;
   }
   
   .nav ul li {
@@ -24,7 +29,10 @@
   }
   
   .button {
-	color: #000000;
+	color: #164ea1;
 	font-size: x-large;
 	font-weight: bolder;
   }
+  ::-webkit-scrollbar {
+	width: 0;
+ }  

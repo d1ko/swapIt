@@ -1,46 +1,58 @@
-import {Form , Input , Button , Row} from 'antd'
-import { Link, useNavigate } from 'react-router-dom'
-import styles from './styles.module.css'
-import { useState } from 'react'
+import { Form, Input, Button, Row } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./styles.module.css";
 
 export const Auth = () => {
-    const [values, setValues]  = useState({
-        nickname: '',
-        number: '',
-        email: '',
-        password: '',
-    });
-    const navigate  = useNavigate();
+  const navigate = useNavigate();
+  const baseUrl = process.env.REACT_APP_API;
 
-    const [auth, setAuth] = useState({
-        auth: false,
-    });
-    // const {setAuth} = !auth;
+  const onFinish = async (values) => {
+    console.log(values.email);
+    console.log(values.password);
 
-    const onSubmit = (values) => {
-        console.log(values.nickname);
-        console.log(values.number);
-        console.log(values.email);
-        console.log(values.password);
-        navigate('/main');
+    if (!localStorage.getItem("access") && !localStorage.getItem("refresh")) {
+      try {
+        const response = await fetch(`${baseUrl}/api/v1/accounts/login/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("access", data.access);
+          localStorage.setItem("refresh", data.refresh);
+          navigate("/main");
+        } else {
+          console.error("Request failed:", response.status);
+        }
+      } catch (error) {
+        console.error("Request failed:", error);
+      }
+    } else {
+      navigate("/main");
     }
+  };
 
-    return (
-        <div className={styles.wrap}>
-            <Form onFinish={onSubmit}>
+  return (
+    <div className={styles.wrap}>
+      <Form onFinish={onFinish}>
+        <Form.Item label="Email" name="email">
+          <Input type="email" required placeholder="Write your email address" />
+        </Form.Item>
+        <Form.Item label="Password" name="password">
+          <Input type="password" required placeholder="Enter your password" />
+        </Form.Item>
 
-                <Form.Item label='email'  name='email' >
-                    <Input type='email' required placeholder='write your email address' />
-                </Form.Item>
-                <Form.Item label='Password' name='password'>
-                    <Input type='password' required placeholder='Enter your password' />
-                </Form.Item>
-
-                <Row justify='center'>
-                    <Button htmlType='submit' type='primary'>Add</Button>
-                </Row>
-                <Link to='/regis' >Creat account</Link>
-            </Form>
-        </div>
-    );
-  }
+        <Row justify="center">
+          <Button htmlType="submit" type="primary">
+            Login
+          </Button>
+        </Row>
+        <Link to="/regis">Create account</Link>
+      </Form>
+    </div>
+  );
+};

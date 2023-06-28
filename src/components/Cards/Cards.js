@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Card, Button } from 'antd';
-import heard from '../../images/heart.png';
-import fullheard from '../../images/heart-full.png';
-import chat from '../../images/comment.png';
 import styles from './styles.module.css';
 
 const { Meta } = Card;
@@ -19,6 +16,7 @@ export const Cards = () => {
                 const response = await fetch(api);
                 const data = await response.json();
                 setCards(data.results);
+                console.log(data.results);
             } catch (error) {
                 console.error('Error', error);
             }

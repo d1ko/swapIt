@@ -1,36 +1,35 @@
-import { Main, Auth, Profile, NotFound, Registration  } from './pages';
-import { useRoutes } from 'react-router-dom';
-import { PrivateRoute } from './components';
-import { Wrapper } from './components';
-import { Guide } from './pages/Guide/Guide';
+import { Main, Auth, Profile, NotFound, Registration } from "./pages";
+import { useRoutes } from "react-router-dom";
+import { PrivateRoute } from "./components";
+import { Wrapper } from "./components";
+import { Guide } from "./pages/Guide/Guide";
 
 export const App = () => {
   const routes = useRoutes([
     {
-      path: '/',
+      path: "/",
       element: <Auth />,
     },
     {
-      path: '/main',
+      path: "/main",
       element: <PrivateRoute element={<Wrapper><Main /></Wrapper>} />,
     },
     {
-      path: '/guide',
+      path: "/guide",
       element: <PrivateRoute element={<Wrapper><Guide /></Wrapper>} />,
     },
     {
-      path: '/profile',
+      path: "/profile",
       element: <PrivateRoute element={<Wrapper><Profile /></Wrapper>} />,
     },
     {
-      path: '/regis',
-      element: <PrivateRoute element={<Registration />} />,
+      path: "/regis",
+      element: <Registration />,
     },
     {
-      path: '*',
+      path: "*",
       element: <NotFound />,
     },
-    
   ]);
 
   return routes;

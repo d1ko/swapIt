@@ -25,7 +25,7 @@ export const Header = () => {
           </li>
           <li>
             <Button type="link" className={styles.button}>
-              <Link to="/profile">О нас</Link>
+              <Link to="/about">О нас</Link>
             </Button>
           </li>
 

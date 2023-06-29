@@ -5,6 +5,7 @@ import { InboxOutlined } from '@ant-design/icons';
 export const AddCards = ({ onCardAdded }) => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
+  const api = process.env.REACT_APP_API
 
   const handleAddCard = () => {
     form.resetFields();
@@ -17,7 +18,7 @@ export const AddCards = ({ onCardAdded }) => {
 
   const handleCreateCard = async (values) => {
     try {
-      const response = await fetch('http://16.171.20.43/api/v1/products', {
+      const response = await fetch(`${api}/api/v1/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

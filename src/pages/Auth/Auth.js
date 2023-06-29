@@ -25,6 +25,7 @@ export const Auth = () => {
           localStorage.setItem("access", data.access);
           localStorage.setItem("refresh", data.refresh);
           navigate("/");
+          window.location.reload();
           
         } else {
           console.error("Request failed:", response.status);

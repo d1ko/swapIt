@@ -24,7 +24,8 @@ export const Auth = () => {
           const data = await response.json();
           localStorage.setItem("access", data.access);
           localStorage.setItem("refresh", data.refresh);
-          navigate("/main");
+          navigate("/");
+          window.location.reload();
         } else {
           console.error("Request failed:", response.status);
         }
@@ -32,7 +33,7 @@ export const Auth = () => {
         console.error("Request failed:", error);
       }
     } else {
-      navigate("/main");
+      navigate("/");
     }
   };
 

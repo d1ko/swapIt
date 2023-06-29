@@ -24,11 +24,14 @@ export const Header = () => {
               <Link to="/profile">О нас</Link>
             </Button>
           </li>
-          <li>
-            <Button type="link" className={styles.button}>
-              <Link to="/profile">Профиль</Link>
-            </Button>
-          </li>
+          {hasTokens && (
+            <li>
+              <Button type="link" className={styles.button}>
+                <Link to="/profile">Профиль</Link>
+              </Button>
+            </li>
+          )}
+
           {!hasTokens && (
             <>
               <li>

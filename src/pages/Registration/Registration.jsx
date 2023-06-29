@@ -27,7 +27,7 @@ export const Registration = () => {
         localStorage.setItem("refresh", data.refresh);
         console.log(data);
         console.log("Регистрация прошла успешно!");
-        navigate("/main"); // Переход на другую страницу после успешной регистрации
+        navigate("/"); // Переход на другую страницу после успешной регистрации
       } else {
         // Обработка ошибок при регистрации
         const errorData = await response.json();

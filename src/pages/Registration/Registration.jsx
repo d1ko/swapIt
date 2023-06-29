@@ -6,7 +6,7 @@ const { Item } = Form;
 
 export const Registration = () => {
   const navigate = useNavigate();
-  const api = process.env.REACT_APP_API
+  const api = process.env.REACT_APP_API;
 
   const [form] = Form.useForm();
   const [showAlert, setShowAlert] = useState(false);
@@ -41,36 +41,38 @@ export const Registration = () => {
   };
 
   return (
-    <div>
-      <h2>Register Form</h2>
-      <Form form={form} onFinish={onFinish}>
-        <Item label="Username" name="username" rules={[{ required: true }]}>
-          <Input />
-        </Item>
-        <Item label="Email" name="email" rules={[{ required: true, type: "email" }]}>
-          <Input />
-        </Item>
-        <Item label="Phone Number" name="phone_number">
-          <Input />
-        </Item>
-        <Item label="Password" name="password" rules={[{ required: true }]}>
-          <Input.Password />
-        </Item>
-        <Item>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
-        </Item>
-      </Form>
-      {showAlert && (
-        <Alert
-          message="Something went wrong, please try again later!"
-          type="error"
-          closable
-          onClose={() => setShowAlert(false)}
-          className="mt-3"
-        />
-      )}
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+      <div>
+        <h2 style={{ textAlign: "center" }}>Регистрация</h2>
+        <Form form={form} onFinish={onFinish}>
+          <Item label="Имя пользователя" name="username" rules={[{ required: true }]}>
+            <Input placeholder="Write your name"/>
+          </Item>
+          <Item label="Email" name="email" rules={[{ required: true, type: "email" }]}>
+            <Input placeholder="Write your email addres"/>
+          </Item>
+          <Item label="Номер телефона" name="phone_number">
+            <Input placeholder="Write your phone number"/>
+          </Item>
+          <Item label="Пароль" name="password" rules={[{ required: true }]}>
+            <Input.Password placeholder="Write your password"/>
+          </Item>
+          <Item>
+            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+              Зарегистрироваться
+            </Button>
+          </Item>
+        </Form>
+        {showAlert && (
+          <Alert
+            message="Что-то пошло не так, попробуйте позже!"
+            type="error"
+            closable
+            onClose={() => setShowAlert(false)}
+            className="mt-3"
+          />
+        )}
+      </div>
     </div>
   );
 };

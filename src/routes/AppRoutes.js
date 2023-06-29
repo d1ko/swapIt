@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Main, Auth, Profile, NotFound, Registration, Guide, About } from "../pages";
+import { Main, Auth, Profile, NotFound, Registration, Guide, About, Product } from "../pages";
 const AppRoutes = () => {
   return (
     <>
@@ -11,6 +11,7 @@ const AppRoutes = () => {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/guide" element={<Guide/>} />
         <Route path="/about" element={<About/>} />
+        <Route path="/product" element={<Product/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </>

@@ -10,7 +10,7 @@ export const Cards = () => {
   const [image, setImage] = useState(heart);
   const [cards, setCards] = useState([]);
 
-  const api = 'http://16.171.20.43/api/v1/products';
+  const api = process.env.REACT_APP_API
 
   useEffect(() => {
     fetchCards();
@@ -18,7 +18,7 @@ export const Cards = () => {
 
   const fetchCards = async () => {
     try {
-      const response = await fetch(api);
+      const response = await fetch(`${api}/api/v1/products`);
       const data = await response.json();
       setCards(data.results);
     } catch (error) {

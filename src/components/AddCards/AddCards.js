@@ -3,8 +3,8 @@ import { Button, Modal, Form, Input, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 
 export const AddCards = ({ onCardAdded }) => {
-    const [open, setOpen] = useState(false);
-    const [form] = Form.useForm();
+  const [open, setOpen] = useState(false);
+  const [form] = Form.useForm();
 
     const handleAddCard = () => {
         form.resetFields();
@@ -15,18 +15,15 @@ export const AddCards = ({ onCardAdded }) => {
         setOpen(false);
     };
 
-    const handleCreateCard = async (values) => {
-        try {
-            const response = await fetch(
-                'http://16.171.20.43/api/v1/products',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(values),
-                }
-            );
+  const handleCreateCard = async (values) => {
+    try {
+      const response = await fetch('http://16.171.20.43/api/v1/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
 
             if (response.ok) {
                 onCardAdded();

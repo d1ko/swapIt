@@ -26,6 +26,7 @@ export const Auth = () => {
           localStorage.setItem("refresh", data.refresh);
           navigate("/");
           window.location.reload();
+          
         } else {
           console.error("Request failed:", response.status);
         }
@@ -39,21 +40,26 @@ export const Auth = () => {
 
   return (
     <div className={styles.wrap}>
-      <Form onFinish={onFinish}>
-        <Form.Item label="Email" name="email">
-          <Input type="email" required placeholder="Write your email address" />
-        </Form.Item>
-        <Form.Item label="Password" name="password">
-          <Input type="password" required placeholder="Enter your password" />
-        </Form.Item>
+      <div>
+        <h2 style={{ textAlign: "center" }}>Вход</h2>
+        <Form onFinish={onFinish}>
+          <Form.Item label="Email" name="email" rules={[{ required: true }]}>
+            <Input type="email" placeholder="Write your email address" />
+          </Form.Item>
+          <Form.Item label="Password" name="password" rules={[{ required: true }]}>
+            <Input.Password placeholder="Write your password" />
+          </Form.Item>
 
-        <Row justify="center">
-          <Button htmlType="submit" type="primary">
-            Login
-          </Button>
-        </Row>
-        <Link to="/regis">Create account</Link>
-      </Form>
+          <Row justify="center">
+            <Button htmlType="submit" type="primary">
+              Login
+            </Button>
+          </Row>
+          <div style={{ textAlign: "center", marginTop: "10px" }}>
+            <Link to="/regis">Create account</Link>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

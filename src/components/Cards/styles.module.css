@@ -1,6 +1,8 @@
 *{
     box-sizing: border-box;
 }
+.input {
+}
 .card {
     width: 240px;
     left: 30px;
@@ -12,8 +14,14 @@
 .cardB{
     height: 120px;
 }
+.box {
+    display: flex;
+    gap: 50px;
+    margin-right: 60px;
+}
 .cards{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 120px;

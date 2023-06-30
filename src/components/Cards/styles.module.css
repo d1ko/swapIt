@@ -3,6 +3,10 @@
 }
 .input {
 }
+.modalImg{
+    width: 100%;
+    height: 500px;
+}
 .card {
     width: 240px;
     left: 30px;

@@ -8,8 +8,6 @@ export const Auth = () => {
 
 
   const onFinish = async (values) => {
-    console.log(values.email);
-    console.log(values.password);
 
     if (!localStorage.getItem("access") && !localStorage.getItem("refresh")) {
       try {

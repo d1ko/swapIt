@@ -12,11 +12,9 @@ export const Cards = () => {
   const [cards, setCards] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  console.log(selectedCard);
   const [searchQuery, setSearchQuery] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [userId, setUserId] = useState({});
-  console.log(userId);
 
   const api = process.env.REACT_APP_API;
 
@@ -32,20 +30,18 @@ export const Cards = () => {
     try {
       const response = await fetch(`${api}/api/v1/products`);
       const data = await response.json();
-      // Добавляем начальное состояние лайка для каждой карточки
       const cardsWithLikes = data.results.map((card) => ({
         ...card,
         liked: false,
       }));
 
-      // Применяем линейный поиск для фильтрации карточек по запросу
+
       const filteredCards = cardsWithLikes.filter((card) =>
         card.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
       setCards(filteredCards);
 
-      // Получение информации о пользователе
       filteredCards.forEach((card) => {
         fetchUserId(card.created_by);
       });

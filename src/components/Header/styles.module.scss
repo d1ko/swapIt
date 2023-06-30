@@ -1,33 +1,58 @@
 .header {
+	width: 100vw;
+	height: 100px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: #e9f8ff;
-	width: 100vw;
+	background: #0a628f;
+	.logo {
+		img {
+			height: 80px;
+			border-radius: 50px;
+			margin-left: 100px;
+			transition: 0.5s;
+			border: 3px solid rgba(255, 255, 255, 0);
+			&:hover {
+				border: 3px solid #fff;
+			}
+		}
+	}
+	.nav {
+		.list {
+			display: flex;
+			list-style-type: none;
+			height: 100%;
+			.link {
+				margin-right: 100px;
+				.button {
+					display: flex;
+					align-items: center;
+					padding: 0;
+					border: 0;
+					.item {
+						font-size: 22px;
+						color: #fff;
+						font-weight: 600;
+						&::before {
+							content: "";
+							position: absolute;
+							bottom: -8px;
+							width: 100%;
+							height: 3px;
+							background: #fff;
+							transform: scale(0);
+							transition: 0.5s;
+						}
+						&:hover::before {
+							transform: scale(1);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-.logo img {
-	display: flex;
-	height: 75px;
-	margin-left: -50px;
-	margin-top: -20px;
-}
-
-.nav ul {
-	display: flex;
-	list-style-type: none;
-	margin-right: 100px;
-}
-
-.nav ul li {
-	margin-right: 10px;
-}
-
-.button {
-	color: #164ea1;
-	font-size: x-large;
-	font-weight: bolder;
-}
 ::-webkit-scrollbar {
 	width: 0;
 }

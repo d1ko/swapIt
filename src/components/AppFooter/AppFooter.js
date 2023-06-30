@@ -11,7 +11,7 @@ const { Footer } = Layout;
 
 export const AppFooter = () => {
     return (
-        <Footer style={{ backgroundColor: '#f0f2f5' }}>
+        <Footer style={{ backgroundColor: '#0a628f', color: '#fff' }}>
             <Row justify='center'>
                 <Col
                     span={24}
@@ -53,8 +53,9 @@ export const AppFooter = () => {
                             <FacebookOutlined
                                 className='social-icon'
                                 style={{
-                                    marginRight: '0.5rem',
+                                    marginRight: '1rem',
                                     fontSize: '30px',
+                                    color: '#fff',
                                 }}
                             />
                         </Link>
@@ -62,8 +63,9 @@ export const AppFooter = () => {
                             <TwitterOutlined
                                 className='social-icon'
                                 style={{
-                                    marginRight: '0.5rem',
+                                    marginRight: '1rem',
                                     fontSize: '30px',
+                                    color: '#fff',
                                 }}
                             />
                         </Link>
@@ -71,8 +73,9 @@ export const AppFooter = () => {
                             <InstagramOutlined
                                 className='social-icon'
                                 style={{
-                                    marginRight: '0.5rem',
+                                    marginRight: '1rem',
                                     fontSize: '30px',
+                                    color: '#fff',
                                 }}
                             />
                         </Link>
@@ -80,8 +83,9 @@ export const AppFooter = () => {
                             <LinkedinOutlined
                                 className='social-icon'
                                 style={{
-                                    marginRight: '0.5rem',
+                                    marginRight: '0rem',
                                     fontSize: '30px',
+                                    color: '#fff',
                                 }}
                             />
                         </Link>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import styles from './styles.module.scss'
 
 export const AddCards = ({ onCardAdded }) => {
     const [open, setOpen] = useState(false);
@@ -40,7 +41,7 @@ export const AddCards = ({ onCardAdded }) => {
     };
 
     return (
-        <div>
+        <div className={styles.add}>
             <Button
                 type='primary'
                 onClick={handleAddCard}

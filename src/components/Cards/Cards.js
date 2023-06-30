@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Card, Button, Modal, Form, Input, Carousel } from "antd";
+import { useState, useEffect, Suspense } from "react";
+import { Card, Button, Modal, Form, Input, Carousel, Spin } from "antd";
 import styles from "./styles.module.css";
 import heart from "../../assets/images/heart.png";
 import fullHeart from "../../assets/images/heart-full.png";
@@ -15,6 +15,7 @@ export const Cards = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [userId, setUserId] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const api = process.env.REACT_APP_API;
 
@@ -28,13 +29,12 @@ export const Cards = () => {
 
   const fetchCards = async () => {
     try {
-      const response = await fetch(`${api}/api/v1/products`);
+      const response = await fetch(`${api}/api/v1/products/`);
       const data = await response.json();
       const cardsWithLikes = data.results.map((card) => ({
         ...card,
         liked: false,
       }));
-
 
       const filteredCards = cardsWithLikes.filter((card) =>
         card.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -43,8 +43,10 @@ export const Cards = () => {
       setCards(filteredCards);
 
       filteredCards.forEach((card) => {
-        fetchUserId(card.created_by);
+        console.log(card);
+        fetchUserId(card.id);
       });
+      setLoading(false);
     } catch (error) {
       console.error("Error", error);
     }
@@ -62,7 +64,11 @@ export const Cards = () => {
 
   const fetchUserId = async (id) => {
     try {
-      const response = await fetch(`${api}/api/v1/accounts/users/${id}/`);
+      const response = await fetch(`${api}/api/v1/accounts/users/${id}/`, {
+        headers: {
+          'Autharization': `Bearer ${localStorage.getItem('access')}`
+        }
+      });
       const data = await response.json();
       setUserId(data);
     } catch (error) {
@@ -86,95 +92,109 @@ export const Cards = () => {
       )
     );
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Имитируем задержку загрузки в течение 3 секунд
+
+    return () => {
+      clearTimeout(timer); // Очищаем таймер при размонтировании компонента
+    };
+  }, []);
 
   return (
     <>
-      <div className={styles.cards}>
-        <Search
-          placeholder="Введите текст для поиска"
-          value={searchQuery}
-          className={styles.input}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-          }}
-          enterButton
-        />
-        <div className={styles.box}>
-          {cards.map((card) => (
-            
-<Card
-              key={card.id}
-              hoverable
-              className={styles.card}
-              cover={
-                <img
-                  alt="example"
-                  src={card.images[0].image}
-                  className={styles.cardImg}
-                />
-              }
-            >
-              <Meta
-                title={card.name}
-                description={card.description}
-                className={styles.cardB}
-              />
-              <span>{card.created_by}</span>
-              <div className={styles.buttonCul}>
-                <Button onClick={() => handleClick(card)}>Show More</Button>
-                {card.liked ? (
-                  <img
-                    alt="none"
-                    src={fullHeart}
-                    className={styles.cardImgLike}
-                    onClick={() => handleLike(card.id)}
+      {loading ? (
+        <>
+          <Spin />
+        </>
+      ) : (
+        <>
+          <div className={styles.cards}>
+            <Search
+              placeholder="Введите текст для поиска"
+              value={searchQuery}
+              className={styles.input}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
+              enterButton
+            />
+            <div className={styles.box}>
+              {cards.map((card) => (
+                <Card
+                  key={card.id}
+                  hoverable
+                  className={styles.card}
+                  cover={
+                    <img
+                      alt="example"
+                      src={card.image}
+                      className={styles.cardImg}
+                    />
+                  }
+                >
+                  <Meta
+                    title={card.name}
+                    description={card.description}
+                    className={styles.cardB}
                   />
-                ) : (
-                  <img
-                    alt="none"
-                    src={heart}
-                    className={styles.cardImgLike}
-                    onClick={() => handleLike(card.id)}
-                  />
-                )}
-              </div>
-            </Card>
-          ))}
-          {selectedCard && (
-            <Modal
-              visible={modalVisible}
-              onCancel={handleModalClose}
-              footer={null}
-              className={styles.modal}
-            >
-              {userId && (
-                <>
-                  {/* <span>Имя: {userInfo?.username}</span>
+                  <span>{card.created_by}</span>
+                  <div className={styles.buttonCul}>
+                    <Button onClick={() => handleClick(card)}>Show More</Button>
+                    {card.liked ? (
+                      <img
+                        alt="none"
+                        src={fullHeart}
+                        className={styles.cardImgLike}
+                        onClick={() => handleLike(card.id)}
+                      />
+                    ) : (
+                      <img
+                        alt="none"
+                        src={heart}
+                        className={styles.cardImgLike}
+                        onClick={() => handleLike(card.id)}
+                      />
+                    )}
+                  </div>
+                </Card>
+              ))}
+              {selectedCard && (
+                <Modal
+                  visible={modalVisible}
+                  onCancel={handleModalClose}
+                  footer={null}
+                  className={styles.modal}
+                >
+                  {userId && (
+                    <>
+                      {/* <span>Имя: {userInfo?.username}</span>
                   <span>Номер: {userInfo?.phone_number}</span>
                   <span>Почта: {userInfo?.email}</span> */}
-                  <span>Имя: {userId?.username}</span>
-                  <span>Номер: {userId?.phone_number}</span>
-                  <span>Почта: {userId?.email}</span>
-                </>
+                      <span>Имя: {userId?.username}</span>
+                      <span>Номер: {userId?.phone_number}</span>
+                      <span>Почта: {userId?.email}</span>
+                    </>
+                  )}
+                  <h2>{selectedCard.name}</h2>
+                  <Carousel>
+                  <div>
+                        <img
+                          src={selectedCard.image}
+                          alt="example"
+                          className={styles.modalImg}
+                        />
+                      </div>
+                  </Carousel>
+                  <p>{selectedCard.description}</p>
+                  <Button type="primary">Exchange</Button>
+                </Modal>
               )}
-              <h2>{selectedCard.name}</h2>
-              <Carousel>
-                {selectedCard.images.map((image) => (
-                  <div key={image.id}>
-                    <img
-                      src={image.image}
-                      alt="example"
-                      className={styles.modalImg}
-                    />
-                  </div>
-                ))}
-              </Carousel>
-              <p>{selectedCard.description}</p>
-              <Button type="primary">Exchange</Button>
-            </Modal>
-          )}
-        </div>
-      </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

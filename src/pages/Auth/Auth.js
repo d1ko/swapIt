@@ -8,6 +8,7 @@ export const Auth = () => {
 
 
   const onFinish = async (values) => {
+    console.log('sadd');
 
     if (!localStorage.getItem("access") && !localStorage.getItem("refresh")) {
       try {

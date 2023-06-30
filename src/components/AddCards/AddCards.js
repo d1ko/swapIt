@@ -17,15 +17,17 @@ export const AddCards = ({ onCardAdded }) => {
     };
 
     const handleCreateCard = async (values) => {
+        const token = localStorage.getItem('access')
         try {
             const response = await fetch(
-                'http://16.171.20.43/api/v1/products',
+                'http://13.48.248.173/api/v1/products/',
                 {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify(values),
+                    body: JSON.stringify({...values, image: values.images[0]}),
                 }
             );
 
@@ -106,7 +108,7 @@ export const AddCards = ({ onCardAdded }) => {
                     >
                         <Input type='number' />
                     </Form.Item>
-                    <Form.List name='images'>
+                    <Form.List name='image'>
                         {(fields, { add, remove }) => (
                             <>
                                 {fields.map((field, index) => (

@@ -60,7 +60,7 @@ export const Cards = () => {
         >
           <Meta title={card.name} description={card.description} className={styles.cardB} />
           <div className={styles.buttonCul}>
-            <Button onClick={() => handleClick(card)}>Show More</Button>
+            <Button onClick={() => handleClick(card)}>Подробнее</Button>
             {card.liked ? (
               <img
                 alt="none"

@@ -11,7 +11,7 @@ export const Header = () => {
       <div className={styles.logo}>
         <Link to="/">
           <img
-            src="https://m.media-amazon.com/images/I/81isydLZhUL.png"
+            src="https://logos-download.com/wp-content/uploads/2021/01/Swapit_Logo.png"
             alt="Logo"
           />
         </Link>

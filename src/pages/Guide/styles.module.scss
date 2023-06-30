@@ -5,14 +5,16 @@
     background: linear-gradient(180deg, #E9F8FF 0%, #FFF 53.14%, #FFF 100%);
     height: 100vh;
     width: 100vw;
-    margin: 0px;
+    
   }
   
   .title {
     display: flex;
     font-size: 20px;
     color: #2e77bb;
+    width: 90vw;
   }
 ::-webkit-scrollbar {
      width: 0;
   }  
+
